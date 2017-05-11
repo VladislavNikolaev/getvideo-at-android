@@ -1,0 +1,75 @@
+apply plugin: 'com.android.application'
+apply from: 'build-config.gradle'
+apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.jakewharton.hugo'
+apply plugin: 'findbugs'
+
+android {
+    compileSdkVersion COMPILE_SDK
+    buildToolsVersion BUILD_TOOLS_VERSION
+    defaultConfig {
+        applicationId "com.zvapps.getvideoat"
+        minSdkVersion MIN_SDK
+        targetSdkVersion TARGET_SDK
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+        enabledForTests = true
+    }
+}
+
+dependencies {
+
+    compile "com.google.dagger:dagger:$DAGGER_VERSION"
+    annotationProcessor "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+    compile "com.android.support.constraint:constraint-layout:$CONSTRAINT_LAYOUT_VERSION"
+    compile "com.android.support:customtabs:$SUPPORT_LIBRARY_VERSION"
+
+    annotationProcessor "com.google.auto.value:auto-value:$AUTOVALUE_VERSION"
+    provided "com.google.auto.value:auto-value:$AUTOVALUE_VERSION"
+
+    compile "com.squareup.retrofit2:retrofit:$RETROFIT2_VERSION"
+    compile "com.fasterxml.jackson.core:jackson-databind:$JACKSON_DATABIND_VERSION"
+    compile "com.squareup.retrofit2:converter-jackson:$RETROFIT2_VERSION"
+
+    compile "com.github.bumptech.glide:glide:$GLIDE_VERSION"
+    compile "com.github.bumptech.glide:okhttp3-integration:$GLIDE_OKHTTP3_MODULE_VERSION@aar"
+
+    debugCompile "com.github.simonpercic:oklog3:$OKLOG_VERSION"
+
+    debugCompile "com.facebook.stetho:stetho:$STETHO_VERSION"
+
+    debugCompile "com.facebook.stetho:stetho-okhttp3:$STETHO_VERSION"
+
+    compile "com.jakewharton.rxbinding2:rxbinding:$RX_BINDING_VERSION"
+    compile "com.annimon:stream:$LIGHTWEIGHT_STREAM_API_VERSION"
+
+    compile "com.squareup.retrofit2:adapter-rxjava2:$RETROFIT2_VERSION"
+    compile "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
+
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile "junit:junit:$JUNIT_VERSION"
+
+    androidTestCompile "com.android.support.test.uiautomator:uiautomator-v18:$UIAUTOMATOR_VERSION"
+    androidTestCompile("com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION") {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+}
