@@ -1,0 +1,16 @@
+android {
+    defaultConfig {
+        buildConfigField 'boolean', 'QA_TEST_VERSION', 'false'
+        buildConfigField 'boolean', 'OKLOG_HEADERS', "${rootProject.ext.okLogHeaders}"
+    }
+
+    buildTypes {
+        debug {
+
+        }
+
+        release {
+
+        }
+    }
+}
