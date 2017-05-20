@@ -11,7 +11,7 @@ import com.zvapps.getvideoat.ui.model.VideoLinksVo;
 
 public class Mapper {
 
-    public VideoLinksVo toVideoLinksVo(@NonNull VideoLinksDto dto) {
+    public static VideoLinksVo toVideoLinksVo(@NonNull VideoLinksDto dto) {
         return new VideoLinksVo();
     }
 }

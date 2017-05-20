@@ -1,8 +1,9 @@
 package com.zvapps.getvideoat.di.component;
 
-import com.zvapps.getvideoat.MainActivity;
+import com.zvapps.getvideoat.ui.main.MainActivity;
 import com.zvapps.getvideoat.di.module.PresenterModule;
 import com.zvapps.getvideoat.di.scope.ScreenScope;
+import com.zvapps.getvideoat.ui.main.MainFragment;
 
 import dagger.Subcomponent;
 
@@ -15,6 +16,8 @@ import dagger.Subcomponent;
 public interface ScreenComponent {
 
     void inject(MainActivity activity);
+
+    void inject(MainFragment mainFragment);
 
     @Subcomponent.Builder
     interface Builder {

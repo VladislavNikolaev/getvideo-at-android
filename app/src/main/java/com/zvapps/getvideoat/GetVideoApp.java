@@ -2,6 +2,7 @@ package com.zvapps.getvideoat;
 
 import android.app.Application;
 
+import com.zvapps.getvideoat.di.component.AppComponent;
 import com.zvapps.getvideoat.di.component.DaggerAppComponent;
 import com.zvapps.getvideoat.di.module.AppModule;
 
@@ -11,12 +12,18 @@ import com.zvapps.getvideoat.di.module.AppModule;
 
 public class GetVideoApp extends Application {
 
+    private AppComponent mAppComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
 
-        DaggerAppComponent.builder()
+        mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
+    }
+
+    public AppComponent getAppComponent() {
+        return mAppComponent;
     }
 }
