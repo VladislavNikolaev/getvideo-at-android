@@ -26,6 +26,6 @@ public class GetVideoApiHelper {
 
     public Single<VideoLinksVo> getVideoLinks(@NonNull String sourceVideoUrl) {
         return mGetVideoApi.getVideoLinks(sourceVideoUrl)
-                .map(Mapper::toVideoLinksVo);
+                .map((dto) -> Mapper.toVideoLinksVo(sourceVideoUrl, dto));
     }
 }

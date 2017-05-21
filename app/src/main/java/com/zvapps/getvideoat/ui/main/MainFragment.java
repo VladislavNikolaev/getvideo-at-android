@@ -1,10 +1,16 @@
 package com.zvapps.getvideoat.ui.main;
 
 import android.content.Context;
+import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateFragment;
+import com.zvapps.getvideoat.R;
 import com.zvapps.getvideoat.ui.model.VideoLinksVo;
 import com.zvapps.getvideoat.utils.DaggerUtils;
 
@@ -20,6 +26,7 @@ public class MainFragment
 
     @Inject
     MainMvp.Presenter mPresenter;
+    private MainFragmentDataBinding mBinding;
 
     @Override
     public void onAttach(Context context) {
@@ -27,9 +34,18 @@ public class MainFragment
         DaggerUtils.getScreenComponent(getContext()).inject(this);
     }
 
+    @Nullable
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    public View onCreateView(LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        mBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
+        return mBinding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         String url = "https://www.youtube.com/watch?v=X1RVYt2QKQE";
         mPresenter.requestVideoLinksByUrl(url);
     }

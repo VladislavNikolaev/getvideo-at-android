@@ -78,7 +78,7 @@ dependencies {
 
     compile "com.hannesdorfmann.mosby3:viewstate:$MOSBY_VERSION"
 
-    compile "com.trello:rxlifecycle:$RX_LIFECYCLE_VERSION"
+    compile "com.trello.rxlifecycle2:rxlifecycle:$RX_LIFECYCLE_VERSION"
 
     compile "io.vokal.lint:rxlifecycle:$RX_LIFECYCLE_LINT_VERSION"
 
