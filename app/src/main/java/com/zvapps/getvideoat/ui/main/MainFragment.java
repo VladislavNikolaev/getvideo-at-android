@@ -5,6 +5,8 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,8 @@ import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateFragment;
 import com.zvapps.getvideoat.R;
 import com.zvapps.getvideoat.ui.model.VideoLinksVo;
 import com.zvapps.getvideoat.utils.DaggerUtils;
+
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -84,6 +88,8 @@ public class MainFragment
 
     @Override
     public void showVideoUrls(@NonNull VideoLinksVo videoLinksVo) {
-
+        ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
+        Objects.requireNonNull(actionBar).setTitle(videoLinksVo.getTitle());
+        mBinding.setVideoLinks(videoLinksVo);
     }
 }
