@@ -1,7 +1,9 @@
 package com.zvapps.getvideoat.ui.main;
 
 import android.content.Context;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -13,6 +15,7 @@ import android.view.ViewGroup;
 
 import com.hannesdorfmann.mosby3.mvp.viewstate.MvpViewStateFragment;
 import com.zvapps.getvideoat.R;
+import com.zvapps.getvideoat.ui.model.FormatVo;
 import com.zvapps.getvideoat.ui.model.VideoLinksVo;
 import com.zvapps.getvideoat.utils.DaggerUtils;
 
@@ -26,7 +29,7 @@ import javax.inject.Inject;
 
 public class MainFragment
         extends MvpViewStateFragment<MainMvp.View, MainMvp.Presenter, MainViewState>
-        implements MainMvp.View {
+        implements MainMvp.View, DownloadLinksAdapter.Listener {
 
     @Inject
     MainMvp.Presenter mPresenter;
@@ -73,17 +76,17 @@ public class MainFragment
 
     @Override
     public void showLoading() {
-
+        //TODO: add progress view
     }
 
     @Override
     public void showError() {
-
+        //TODO: add errors handling
     }
 
     @Override
     public void showVideoUrlForm() {
-
+        //TODO: add video url form
     }
 
     @Override
@@ -91,5 +94,14 @@ public class MainFragment
         ActionBar actionBar = ((AppCompatActivity) getActivity()).getSupportActionBar();
         Objects.requireNonNull(actionBar).setTitle(videoLinksVo.getTitle());
         mBinding.setVideoLinks(videoLinksVo);
+        DownloadLinksAdapter adapter =
+                new DownloadLinksAdapter(getContext(), videoLinksVo.getVideoFormats(), this);
+        mBinding.downloadLinksList.setAdapter(adapter);
+    }
+
+    @Override
+    public void onDownloadVideoItemClick(@NonNull FormatVo formatVo) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(formatVo.getUrl()));
+        startActivity(browserIntent);
     }
 }

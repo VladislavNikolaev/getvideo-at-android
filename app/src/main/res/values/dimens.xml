@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="std_margin">8dp</dimen>
+    <dimen name="std_margin_medium">6dp</dimen>
+    <dimen name="std_margin_small">4dp</dimen>
+    <dimen name="std_margin_minus_small">-4dp</dimen>
+    <dimen name="std_margin_extra_small">2dp</dimen>
+    <dimen name="std_margin_big">12dp</dimen>
+    <dimen name="std_margin_huge">16dp</dimen>
+    <dimen name="std_margin_extra_huge">24dp</dimen>
+</resources>

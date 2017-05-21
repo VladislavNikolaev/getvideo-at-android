@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+    >
+
+    <!--suppress AndroidUnknownAttribute -->
+    <data class="com.zvapps.getvideoat.ui.main.DownloadVideoItemBinging">
+
+        <variable
+            name="format"
+            type="com.zvapps.getvideoat.ui.model.FormatVo"
+            />
+
+        <variable
+            name="listener"
+            type="com.zvapps.getvideoat.ui.main.DownloadLinksAdapter.Listener"
+            />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/std_margin_big"
+        android:background="@color/colorAccent"
+        android:onClick="@{() -> listener.onDownloadVideoItemClick(format)}"
+        android:orientation="horizontal"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="@dimen/std_margin_big"
+            android:text="@{format.format}"
+            tools:text="mp4"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginEnd="@dimen/std_margin_big"
+            android:text="@{format.quality}"
+            tools:text="360p"
+            />
+    </FrameLayout>
+</layout>

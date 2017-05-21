@@ -82,6 +82,8 @@ dependencies {
 
     compile "io.vokal.lint:rxlifecycle:$RX_LIFECYCLE_LINT_VERSION"
 
+    compile "com.jakewharton.timber:timber:$TIMBER_VERSION"
+
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile "junit:junit:$JUNIT_VERSION"
 

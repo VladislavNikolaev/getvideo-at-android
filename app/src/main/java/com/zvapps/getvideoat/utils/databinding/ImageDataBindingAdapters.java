@@ -8,8 +8,11 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.widget.ImageView;
 
-import com.bumptech.glide.BitmapRequestBuilder;
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestListener;
+import com.bumptech.glide.request.target.Target;
+
+import timber.log.Timber;
 
 /**
  * Created by Vladislav Nikolaev on 21.05.2017.
@@ -37,6 +40,26 @@ public class ImageDataBindingAdapters {
                 .error(errorImage)
                 .placeholder(placeholder)
                 .fallback(errorImage)
+                .listener(new RequestListener<Uri, Bitmap>() {
+                    @Override
+                    public boolean onException(Exception e,
+                                               Uri model,
+                                               Target<Bitmap> target,
+                                               boolean isFirstResource) {
+                        Timber.e(e, " onException ");
+                        return false;
+                    }
+
+                    @Override
+                    public boolean onResourceReady(Bitmap resource,
+                                                   Uri model,
+                                                   Target<Bitmap> target,
+                                                   boolean isFromMemoryCache,
+                                                   boolean isFirstResource) {
+                        Timber.d(" onResourceReady %s", url);
+                        return false;
+                    }
+                })
                 .into(imageView);
     }
 }
